@@ -14,47 +14,63 @@
 " .vimrc I might have come across on my many voyages of the internet.
 
 "
-" none vi compatilble
+" not vi compatible
 "
 set nocompatible
 
 "
-" hide scrollbar
+" hide all scrollbars (gui version of vim)
 "
-set guioptions-=rRlL
+" TODO: scrollbars still shows up on horizontal split
+"
+" disabled:
+"
+" 'r' right-hand scrollbar is always present
+" 'R' right-hand scrollbar is present on vertically split
+" 'l' left-hand scrollbar is always present
+" 'L' left-hand scrollbar is present on vertically split
+" 'b' bottom (horizontal) scrollbar is present.
+"
+set guioptions-=rRlLb
 
 "
-" linespace
+" add some extra space between lines
+"
+" (sets the number of pixel lines inserted between characters)
 "
 set linespace=2
 
 "
 " store a ton of history
 "
+" (set the number of lines that are remembered)
+"
 set history=1000
 
 "
-" reload files when changed on disk
+" when a file has been detected to have been changed outside of vim and it
+" has not been changed inside of vim, automatically read it again
 "
 set autoread
 
 "
-" UTF-8
+" set the character encoding used inside vim to utf-8
 "
 set encoding=utf-8
 
 "
-" turn bell-hell off
+" no beeping, no visual bell (hell)
 "
 set vb t_vb=
 
 "
-" don't store swapfiles in the current directory
+" remove the current directory from the list of directories
+" vim uses to store swapfiles
 "
 set directory-=.
 
 "
-" case-insensitive search...
+" ignore case when searching (e.g. /FooBAR -> /foobar)
 "
 set ignorecase
 
@@ -64,17 +80,22 @@ set ignorecase
 set incsearch
 
 "
-" the /g flag on :s
+" set the substitute 'g' (global) flag to be on, per default
 "
 set gdefault
 
 "
-" show where you are at
+" when enabled, the ruler is displayed on the right side of the status line
+" at the bottom of the window
+"
+" TODO: see how the 'bling/vim-airline' plugin sets the ruler
 "
 set ruler
 
 "
 " keep cursor in middle of screen always
+"
+" (set the minimal number of screen lines to keep above and below the cursor)
 "
 set scrolloff=999
 
@@ -101,7 +122,7 @@ set listchars=tab:▸\ ,trail:▫
 set number
 
 "
-" relative line numbers
+" show relative line numbers
 "
 set relativenumber
 
@@ -250,11 +271,6 @@ Plug 'airblade/vim-gitgutter'
 " smoot scrolling in vim (C-D, C-U)
 "
 Plug 'yonchu/accelerated-smooth-scroll'
-
-"
-" a code-completion engine for vim
-"
-Plug 'Valloric/YouCompleteMe'
 
 "
 "
