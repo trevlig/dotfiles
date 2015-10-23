@@ -33,7 +33,7 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
-set guioptions-=h
+set guioptions-=b
 
 "
 " add some extra space between lines
