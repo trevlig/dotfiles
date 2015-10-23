@@ -21,8 +21,6 @@ set nocompatible
 "
 " hide all scrollbars (gui version of vim)
 "
-" TODO: scrollbars still shows up on horizontal split
-"
 " disabled:
 "
 " 'r' right-hand scrollbar is always present
@@ -31,7 +29,11 @@ set nocompatible
 " 'L' left-hand scrollbar is present on vertically split
 " 'b' bottom (horizontal) scrollbar is present.
 "
-set guioptions-=rRlLb
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=h
 
 "
 " add some extra space between lines
