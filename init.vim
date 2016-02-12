@@ -12,294 +12,220 @@
 " I am a pirate! This file is loot, ripped in parts and pieces from all the
 " .vimrc I might have come across on my many voyages of the internet.
 "
-" NEOVIM VERSION
-"
 
 "
-" @GENERAL
+" keymap
 "
+" `jj` (or <ESC>) to escape into normal mode
+"
+" in normal mode
+"
+" `<space>d` to kill buffer
+" `<space>e` to find a file
+" `<space>f` to find a line in the current buffer
+" `<space>q` to quite/close window
+" `<space>s` to remove trailing spaces
+" `<space>w` to write the current buffer to file
+"
+" `<TAB>` to show next buffer
+" `<Shift-Tab> to show previous buffer
+"
+" Haskell
+"
+" `<space>hh` to hoogle word under cursor
+" `<space>hH` to hoogle
+" `<space>hi` to hoogle word under cursor for detailed information
+" `<space>hI` to hoogle for detailed information
+"
+" `<space>hz` to close any hoogle window
+"
+" `<space>ht` to show type info for exp under cursor
+" `<space>hT` to clear type info
 
-" Vim, not vi
-"
+"" @VIM
+
+"" vim, not vi
+
 set nocompatible
 
+"" store more history
 
-" Store more history
-"
 set history=1000
 
+"" ignore case when searching (e.g. /FooBAR -> /foobar)
 
-" Ignore case when searching (e.g. /FooBAR -> /foobar)
-"
 set ignorecase
 
+"" search as you type
 
-" Search as you type
-"
 set incsearch
 
+"" set the substitute 'g' (global) flag to be on, per default
 
-" Set the substitute 'g' (global) flag to be on, per default
-"
 set gdefault
 
+"" Reload file if it has been detected to have been changed outside of vim.
 
-"
-"    /$$$$$$  /$$ /$$
-"   /$$__  $$|__/| $$
-"  | $$  \__/ /$$| $$  /$$$$$$   /$$$$$$$
-"  | $$$$    | $$| $$ /$$__  $$ /$$_____/
-"  | $$_/    | $$| $$| $$$$$$$$|  $$$$$$
-"  | $$      | $$| $$| $$_____/ \____  $$
-"  | $$      | $$| $$|  $$$$$$$ /$$$$$$$/
-"  |__/      |__/|__/ \_______/|_______/
-"
-"
-" @FILE
-"
-
-" Reload file if it has been detected to have been changed outside of vim.
-"
 set autoread
 
+"" DO NOT make a backup before overwriting a file (and keep it)
 
-" DO NOT make a backup before overwriting a file (and keep it)
-"
 set nobackup
 
+"" DO NOT make a backup before overwriting a file (and delete it on success).
 
-" DO NOT make a backup before overwriting a file (and delete it on success).
-"
 set nowritebackup
 
+"" DO NOT store the things you changed in a swap file.
 
-" DO NOT store the things you changed in a swap file.
-"
 set noswapfile
 
+"" DO NOT store swapfiles in current directory
 
-" DO NOT store swapfiles in current directory
-"
 set directory-=.
 
+"" no beeping, or visual bell(-hell)
 
-"
-"        /$$ /$$                     /$$
-"       | $$|__/                    | $$
-"   /$$$$$$$ /$$  /$$$$$$$  /$$$$$$ | $$  /$$$$$$  /$$   /$$
-"  /$$__  $$| $$ /$$_____/ /$$__  $$| $$ |____  $$| $$  | $$
-" | $$  | $$| $$|  $$$$$$ | $$  \ $$| $$  /$$$$$$$| $$  | $$
-" | $$  | $$| $$ \____  $$| $$  | $$| $$ /$$__  $$| $$  | $$
-" |  $$$$$$$| $$ /$$$$$$$/| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$
-"  \_______/|__/|_______/ | $$____/ |__/ \_______/ \____  $$
-"                         | $$                     /$$  | $$
-"                         | $$                    |  $$$$$$/
-"                         |__/                     \______/
-"
-" @DISPLAY
-"
-
-" No beeping, or visual bell(-hell)
-"
 set vb t_vb=
 
+"" automatically rebalance windows on vim resize
 
-" Automatically rebalance windows on vim resize
-"
 autocmd VimResized * :wincmd =
 
+"" show trailing whitespace and tabs
 
-" Show trailing whitespace and tabs
-"
 set list
 set listchars=tab:▸\ ,trail:▫
 
+"" show matching brackets
 
-" Show matching brackets
-"
 set showmatch
 
+"" wrap lines
 
-" Wrap lines
-"
 set wrap
 
+"" show line numbers
 
-" Show line numbers
-"
 " set number
 
+"" show relative line numbers
 
-" Show relative line numbers
-"
 " set relativenumber
 
+"" mark column 80
 
-" Mark column 80
-"
-" set colorcolumn=80
+set colorcolumn=80
+
+"" let &colorcolumn=join(range(81,999),",")
+
+highlight ColorColumn ctermbg=230
 
 
-"
-"    /$$               /$$
-"   | $$              | $$
-"  /$$$$$$    /$$$$$$ | $$$$$$$   /$$$$$$$
-" |_  $$_/   |____  $$| $$__  $$ /$$_____/
-"   | $$      /$$$$$$$| $$  \ $$|  $$$$$$
-"   | $$ /$$ /$$__  $$| $$  | $$ \____  $$
-"   |  $$$$/|  $$$$$$$| $$$$$$$/ /$$$$$$$/
-"    \___/   \_______/|_______/ |_______/
-"
-"
-" @TABS
-"
-" default tab settings
-"
+"" always keep one line visible above and below the cursor
 
-" Filetype detection
-"
+if !&scrolloff
+  set scrolloff=1
+endif
+
+"" when lastline is included, as much as possible of the last line in a window
+"" will be displayed. when not included, alast line that doesn't fit is
+"" replaced with "@" lines.
+
+set display+=lastline
+
+"" filetype detection
+
 filetype indent on
 
+"" copy the indent from the previous line
 
-" Copy the indent from the previous line
-"
 set autoindent
 
+"" automatically insert one level of indent (in some cases)
 
-" Automatically insert one level of indent (in some cases)
-"
 set smartindent
 
+"" expand tabs to spaces
 
-" Expand tabs to spaces
-"
 set expandtab
 
+"" insert both tab and backspace use 4 spaces
 
-" Insert both tab and backspace use 4 spaces
-"
 set softtabstop=4
 
+"" actual tabs occupy 4 characters
 
-" Actual tabs occupy 4 characters
-"
 set tabstop=4
 
+"" normal mode indention commands use 4 space
 
-" Normal mode indention commands use 4 space
-"
 set shiftwidth=4
 
+"" round indent to nearest shiftwidth multiple
 
-" Round indent to nearest shiftwidth multiple
-"
 set shiftround
 
+"" detect filetype and load plugins
 
-"
-"             /$$                     /$$
-"            | $$                    |__/
-"    /$$$$$$ | $$ /$$   /$$  /$$$$$$  /$$ /$$$$$$$   /$$$$$$$
-"   /$$__  $$| $$| $$  | $$ /$$__  $$| $$| $$__  $$ /$$_____/
-"  | $$  \ $$| $$| $$  | $$| $$  \ $$| $$| $$  \ $$|  $$$$$$
-"  | $$  | $$| $$| $$  | $$| $$  | $$| $$| $$  | $$ \____  $$
-"  | $$$$$$$/| $$|  $$$$$$/|  $$$$$$$| $$| $$  | $$ /$$$$$$$/
-"  | $$____/ |__/ \______/  \____  $$|__/|__/  |__/|_______/
-"  | $$                     /$$  \ $$
-"  | $$                    |  $$$$$$/
-"  |__/                     \______/
-"
-" https://github.com/junegunn/vim-plug
-"
-" @PLUGINS
-"
-
-
-" Filetype detection
-"
 filetype plugin on
 
-
-" Load
 "
+"" @PLUGINS
+"
+"" https://github.com/junegunn/vim-plug
+"
+
 call plug#begin('~/.config/nvim/plugged')
 
-
-" Syntastic is a syntax checking plugin
-"
-" https://github.com/scrooloose/syntastic
-"
 Plug 'scrooloose/syntastic'
-
-
-" Shows a git diff in the gutter (sign column) and stages/reverts hunks.
-"
-" https://github.com/airblade/vim-gitgutter
-"
 Plug 'airblade/vim-gitgutter'
-
-
-" Nerd commenter; allows for easy commenting of code for many filetypes
-"
-" https://github.com/scrooloose/nerdcommenter
-"
 Plug 'scrooloose/nerdcommenter'
-
-
-" Airline; lean & mean status/tabline for vim
-"
-" https://github.com/bling/vim-airline
-"
 Plug 'bling/vim-airline'
-
-
-" Vim plugin for Haskell development powered by the lightnight fast hdevtools
-" background server.
-"
-" $ cabal install hdevtools
-"
-" https://github.com/bitc/vim-hdevtools
-"
 Plug 'bitc/vim-hdevtools'
-
-
-" Vim plugin used to query hoogle, the haskell search engine
-"
 Plug 'Twinside/vim-hoogle'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'freeo/vim-kalisi'
+Plug 'moll/vim-bbye'
+Plug 'Shougo/deoplete.nvim'
+Plug 'tpope/vim-repeat'
+Plug 'svermeulen/vim-easyclip'
+Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
 
 
-" End load
-"
+" Plug 'tpope/vim-vinegar'
+
 call plug#end()
 
+"" @DEOPLETE
 
-"                                  /$$$$$$  /$$
-"                                 /$$__  $$|__/
-"    /$$$$$$$  /$$$$$$  /$$$$$$$ | $$  \__/ /$$  /$$$$$$
-"   /$$_____/ /$$__  $$| $$__  $$| $$$$    | $$ /$$__  $$
-"  | $$      | $$  \ $$| $$  \ $$| $$_/    | $$| $$  \ $$
-"  | $$      | $$  | $$| $$  | $$| $$      | $$| $$  | $$
-"  |  $$$$$$$|  $$$$$$/| $$  | $$| $$      | $$|  $$$$$$$
-"   \_______/ \______/ |__/  |__/|__/      |__/ \____  $$
-"                                               /$$  \ $$
-"                                              |  $$$$$$/
-"                                               \______/
-" @CONFIG
-"
+" Use deoplete.
 
-"
-" @CONFIG @AIRLINE
-"
+let g:deoplete#enable_at_startup = 1
+
+" <TAB> completion
+
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+"" @AIRLINE
+
+"" theme
 
 let g:airline_theme = 'wombat'
+
+"" hide symbols not supported by font
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-
-" Hide symbols not supported by font
-"
 let g:airline_left_sep              = ''
 let g:airline_right_sep             = ''
 let g:airline_symbols.linenr        = ''
@@ -307,132 +233,82 @@ let g:airline_symbols.branch        = '⎇'
 let g:airline_symbols.paste         = '∥'
 let g:airline_symbols.whitespace    = 'Ξ'
 
+"" show airline tabline
 
-" Show airline tabline
-"
 let g:airline#extensions#tabline#enabled    = 1
 let g:airline#extensions#tabline#fnamemod   = ':t'
 
-"
-"            /$$
-"           | $$
-"   /$$$$$$ | $$$$$$$   /$$$$$$
-"  /$$__  $$| $$__  $$ /$$__  $$
-" | $$  \ $$| $$  \ $$| $$  \ $$
-" | $$  | $$| $$  | $$| $$  | $$
-" | $$$$$$$/| $$  | $$| $$$$$$$/
-" | $$____/ |__/  |__/| $$____/
-" | $$                | $$
-" | $$                | $$
-" |__/                |__/
-"
-" @PHP
-"
+"" @SYNTASTIC
 
-"
-" @PHP @SYNTASTIC
-"
+let g:syntastic_check_on_open = 1
+
+"" @PHP
+
+"" config syntastic for php
 
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_php_phpcs_args="--report=csv --standard=psr2"
 
-"
-"        /$$  /$$$$$$$
-"       |__/ /$$_____/
-"        /$$|  $$$$$$
-"       | $$ \____  $$
-"       | $$ /$$$$$$$/
-"       | $$|_______/
-"  /$$  | $$
-" |  $$$$$$/
-"  \______/
-"
-" @JAVASCRIPT
-"
+"" @HANDLEBARS
 
-" Javascript indention
-"
-autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufNewFile,BufRead *.handlebars,*.hbs set filetype=html.handlebars
+autocmd FileType html.handlebars setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
+"" @JAVASCRIPT
 
-"
-"   /$$                           /$$                 /$$ /$$
-"  | $$                          | $$                | $$| $$
-"  | $$$$$$$   /$$$$$$   /$$$$$$$| $$   /$$  /$$$$$$ | $$| $$
-"  | $$__  $$ |____  $$ /$$_____/| $$  /$$/ /$$__  $$| $$| $$
-"  | $$  \ $$  /$$$$$$$|  $$$$$$ | $$$$$$/ | $$$$$$$$| $$| $$
-"  | $$  | $$ /$$__  $$ \____  $$| $$_  $$ | $$_____/| $$| $$
-"  | $$  | $$|  $$$$$$$ /$$$$$$$/| $$ \  $$|  $$$$$$$| $$| $$
-"  |__/  |__/ \_______/|_______/ |__/  \__/ \_______/|__/|__/
-"
-" @HASKELL
-"
+"" set indention for javascript
 
-" Haskell indention
-"
+autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 syntax=off
+
+autocmd FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 syntax=off
+
+"autocmd FileType javascript set syntax=on
+
+"" set syntastic options
+
+let g:syntastic_javascript_checkers = ['jshint']
+
+"" @HASKELL
+
+"" set indention for haskell
+
 autocmd FileType haskell setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
+"" #key - show type of exp. under cursor (hdevtools)
 
-"
-" @HASKELL @HDEVTOOLS
-"
-
-
-" Show type of expression
-"
 au Filetype haskell nnoremap <buffer> <leader>ht :HdevtoolsType<CR>
 
+"" #key - clear display of type (hdevtools)
 
-" Clear type of expression
-"
 au Filetype haskell nnoremap <buffer> <silent> <leader>hT :HdevtoolsClear<CR>
 
-
-"
-" @HASKELL @HDEVTOOLS @SYNTASTIC
-"
-
+"" config syntastic for haskell
 
 let g:syntastic_haskell_hdevtools_args = '-g-Wall'
 let g:syntastic_haskell_checkers = ['hdevtools']
 
+"" #key - hoogle the word under the cursor (hoogle)
 
-"
-" @HASKELL @HOOGLE
-"
-
-
-" Hoogle the word under the cursor
-"
 au Filetype haskell nnoremap <silent> <leader>hh :Hoogle<CR>
 
+"" #key - hoogle and prompt for input (hoogle)
 
-" Hoogle and prompt for input
-"
 au Filetype haskell nnoremap <leader>hH :Hoogle
 
+"" #key - hoogle for detailed documentation (e.g. "Functor")
 
-" Hoogle for detailed documentation (e.g. "Functor")
-"
 au Filetype haskell nnoremap <silent> <leader>hi :HoogleInfo<CR>
 
+"" #key - hoogle for detailed documentation and prompt for input
 
-" Hoogle for detailed documentation and prompt for input
-"
 au Filetype haskell nnoremap <leader>hI :HoogleInfo
 
+"" #key - hoogle, close the Hoogle window
 
-" Hoogle, close the Hoogle window
-"
 au Filetype haskell nnoremap <silent> <leader>hz :HoogleClose<CR>
 
+"" #key - insert module section (--s)
 
-"
-" @HASKELL @MISC
-"
-
-" Insert module section --s
-"
 let s:width = 80
 
 function! HaskellModuleSection(...)
@@ -446,9 +322,8 @@ endfunction
 
 nmap <silent> --s "=HaskellModuleSection()<CR>gp
 
+"" #key - insert module header (--h)
 
-" Insert module header --h
-"
 function! HaskellModuleHeader(...)
     let name = 0 < a:0 ? a:1 : inputdialog("Module: ")
     let note = 1 < a:0 ? a:2 : inputdialog("Note: ")
@@ -468,80 +343,46 @@ endfunction
 
 nmap <silent> --h "=HaskellModuleHeader()<CR>:0put =<CR>
 
+"" @KEYS
 
-"
-"  /$$
-" | $$
-" | $$   /$$  /$$$$$$  /$$   /$$  /$$$$$$$
-" | $$  /$$/ /$$__  $$| $$  | $$ /$$_____/
-" | $$$$$$/ | $$$$$$$$| $$  | $$|  $$$$$$
-" | $$_  $$ | $$_____/| $$  | $$ \____  $$
-" | $$ \  $$|  $$$$$$$|  $$$$$$$ /$$$$$$$/
-" |__/  \__/ \_______/ \____  $$|_______/
-"                      /$$  | $$
-"                     |  $$$$$$/
-"                      \______/
-"
-" @KEYS
-"
+"" #key - move around windows using CTRL
 
-" Move around windows using CTRL
-"
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+"" #key - escape to normal mode with 'jj'
 
-"
-" @KEYS @INSERT MODE
-"
-
-
-" Escape to normal mode with 'jj'
-"
 inoremap jj <ESC>
 
+"" #key - disable mapping for K (man pages)
 
-"
-" @KEYS @NORMAL
-"
-
-
-" disable mapping for K (man pages)
-"
 nmap K <nop>
 
+"" #key - <SPACE> is <leader>
 
-" <SPACE> is leader
-"
 nnoremap <SPACE> <NOP>
 let mapleader=" "
 
+"" #key - save us having to use shift in normal mode
 
-" Save us having to use shift in normal mode
-"
 nnoremap ; :
 
+"" #key - close window
 
-" Close window
-"
-"nnoremap <leader>q :close<CR>
 nnoremap <leader>q :q!<CR>
 
+"" #key - close buffer
 
-" Close buffer
-"
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :Bdelete<CR>
 
+"" #key - write file
 
-" Write file
-"
 nnoremap <leader>w :w!<CR>
 
+"" #key - strip trailing spaces from line
 
-" Strip trailing spaces from line
-"
 function! Strip_trailing()
   let previous_search=@/
   let previous_cursor_line=line('.')
@@ -553,67 +394,42 @@ endfunction
 
 nnoremap <leader>s :call Strip_trailing()<CR>
 
+"" #key - treat long lines as break lines (useful when moving around in them)
 
-" Treat long lines as break lines (useful when moving around in them)
-"
 nnoremap j gj
 nnoremap k gk
 
+"" #key - tab through buffers
 
-" Tab through buffers
-"
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprev<CR>
 
+"" #key - fzf
 
-"
-" @KEYS @TERMINAL
-"
+nnoremap <leader>e :Files!<CR>
+nnoremap <leader>f :BLines!<CR>
 
+"" #key - escape to normal mode with 'jj' (from terminal mode, neovim)
 
-" Escape to normal mode with 'jj'
-"
 tnoremap jj <C-\><C-n>
 
+"" #key - visual mode pressing * or # searches for the current selection
 
-"
-" @KEYS @VISUAL
-"
-
-
-" visual mode pressing * or # searches for the current selection
-"
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
+"" @FIXES
 
-"
-"    /$$$$$$  /$$
-"   /$$__  $$|__/
-"  | $$  \__/ /$$ /$$   /$$  /$$$$$$   /$$$$$$$
-"  | $$$$    | $$|  $$ /$$/ /$$__  $$ /$$_____/
-"  | $$_/    | $$ \  $$$$/ | $$$$$$$$|  $$$$$$
-"  | $$      | $$  >$$  $$ | $$_____/ \____  $$
-"  | $$      | $$ /$$/\  $$|  $$$$$$$ /$$$$$$$/
-"  |__/      |__/|__/  \__/ \_______/|_______/
-"
-" Various fixes and overrides to make vim work as you whish
-"
-" @FIXES
-"
+"" DO NOT use syntax highlight
 
-" DO NOT use syntax highlight
-"
-syntax off
+syntax manual
 
+"" fix backspace (on some systems)
 
-" Fix backspace (on some systems)
-"
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+"" split is white
 
-" Split is white
-"
 hi VertSplit ctermfg=015 ctermbg=015 guibg=NONE guifg=NONE guisp=NONE gui=NONE
 
