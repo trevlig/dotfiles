@@ -23,6 +23,7 @@
 " `<space>d` to kill buffer
 " `<space>e` to find a file
 " `<space>f` to find a line in the current buffer
+" `<space>b` to show list of buffers
 " `<space>q` to quite/close window
 " `<space>s` to remove trailing spaces
 " `<space>w` to write the current buffer to file
@@ -47,6 +48,10 @@
 "" vim, not vi
 
 set nocompatible
+
+"" updatetime
+
+set updatetime=250
 
 "" store more history
 
@@ -115,11 +120,13 @@ set wrap
 
 "" mark column 80
 
-set colorcolumn=80
+" set colorcolumn=80
 
-"" let &colorcolumn=join(range(81,999),",")
+"" mark more than just one column
+" let &colorcolumn=join(range(81,999),",")
 
-highlight ColorColumn ctermbg=230
+"" set color of the highlighted column(s)
+" highlight ColorColumn ctermbg=230
 
 
 "" always keep one line visible above and below the cursor
@@ -175,34 +182,70 @@ filetype plugin on
 "
 "" https://github.com/junegunn/vim-plug
 "
-
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'scrooloose/syntastic'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
-Plug 'bling/vim-airline'
 Plug 'bitc/vim-hdevtools'
+
 Plug 'Twinside/vim-hoogle'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'freeo/vim-kalisi'
+
+" Syntax checking hacks for vim
+Plug 'scrooloose/syntastic'
+
+" Vim plugin for intensely orgasmic commenting
+Plug 'scrooloose/nerdcommenter'
+
+" Vim motions on speed!
+Plug 'easymotion/vim-easymotion'
+
+" Highlight the flooding part of an overly long line.
+Plug 'whatyouhide/vim-lengthmatters'
+
+" Delete buffers and close files in Vim without closing your windows
 Plug 'moll/vim-bbye'
-Plug 'Shougo/deoplete.nvim'
-Plug 'tpope/vim-repeat'
+
+" A light and configurable statusline/tabline for Vim
+Plug 'itchyny/lightline.vim'
+
+" Simplified clipboard functionality for Vim
 Plug 'svermeulen/vim-easyclip'
-Plug 'junegunn/goyo.vim'
+
+" Dark powered asynchronous completion framework for neovim
+Plug 'Shougo/deoplete.nvim'
+
+" A Vim plugin which shows a git diff in the 'gutter' (sign column)
+Plug 'airblade/vim-gitgutter'
+
+" Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+
+" Enable repeating supported plugin maps with "."
+Plug 'tpope/vim-repeat'
+
+" Quoting/Parenthesizing made simple
+Plug 'tpope/vim-surround'
+
+"Plug 'pangloss/vim-javascript'
+
+" A command-line fuzzy finder written in Go
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Things you can do with fzf and Vim
+Plug 'junegunn/fzf.vim'
+
+" Git commit browser
 Plug 'junegunn/gv.vim'
+
+" Pseudo-command-line (experimental, required by vim-oblique)
 Plug 'junegunn/vim-pseudocl'
+
+" Improved /-search (experimental)
 Plug 'junegunn/vim-oblique'
 
-
-" Plug 'tpope/vim-vinegar'
-
 call plug#end()
+
+"" @LENGTHMATTERS
+
+call lengthmatters#highlight('ctermbg=230 ctermfg=0')
 
 "" @DEOPLETE
 
@@ -406,8 +449,9 @@ nnoremap <S-TAB> :bprev<CR>
 
 "" #key - fzf
 
-nnoremap <leader>e :Files!<CR>
-nnoremap <leader>f :BLines!<CR>
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>f :BLines<CR>
+nnoremap <leader>b :Buffers<CR>
 
 "" #key - escape to normal mode with 'jj' (from terminal mode, neovim)
 
@@ -433,3 +477,6 @@ set whichwrap+=<,>,h,l
 
 hi VertSplit ctermfg=015 ctermbg=015 guibg=NONE guifg=NONE guisp=NONE gui=NONE
 
+"" handlebars and html + syntastic does not play well
+
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
