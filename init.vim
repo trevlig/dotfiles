@@ -26,6 +26,8 @@
 " `<space>w` to write the current buffer to file
 " `<space>f` to find a line in the current buffer
 " `<space>s` to remove trailing spaces
+" `<space>k` `<space>l` goto row
+" `s` two char search (easymotion)
 "
 
 "
@@ -131,6 +133,12 @@ call plug#begin('~/.config/nvim/plugged')
 "
 Plug 'Shougo/deoplete.nvim'
 
+" The ultimate snippet solution for Vim.
+Plug 'SirVer/ultisnips'
+
+" default snippets
+Plug 'honza/vim-snippets'
+
 " syntax checking hacks for vim
 Plug 'scrooloose/syntastic'
 
@@ -180,8 +188,17 @@ call plug#end()
 " >> DEOPLETE <<
 
 let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" >> ULTISNIPS <<
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " >> LENGTH MATTERS <<
 
@@ -236,7 +253,7 @@ nmap K <nop>
 nnoremap <SPACE> <NOP>
 let mapleader=" "
 
-"" save us having to use shift in normal mode
+" save us having to use shift in normal mode
 nnoremap ; :
 vnoremap ; :
 
@@ -269,7 +286,31 @@ nnoremap <leader>e :Files<CR>
 nnoremap <leader>f :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
 
+" easy motion
+
+" map <Leader>l <Plug>(easymotion-lineforward)
+" map <Leader>h <Plug>(easymotion-linebackward)
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+let g:EasyMotion_smartcase = 1
+
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+
 " visual mode pressing * or # searches for the current selection
+
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
