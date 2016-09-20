@@ -1,4 +1,6 @@
 "
+" >> Customized << version of off.vim
+"
 " Name:       off.vim
 " Version:    0.1
 " Maintainer: github.com/pbrisbin
@@ -16,33 +18,41 @@ if exists('syntax on')
     syntax reset
 endif
 
-let g:colors_name='dead'
+let g:colors_name='off'
 
-let s:black           = { "gui": "#212121", "cterm": "0"   }
-let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
-let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
-let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
-let s:light_black     = { "gui": "#424242", "cterm": "8"   }
-let s:lighter_black   = { "gui": "#545454", "cterm": "240" }
-let s:subtle_black    = { "gui": "#303030", "cterm": "236" }
-let s:light_gray      = { "gui": "#B2B2B2", "cterm": "249" }
-let s:lighter_gray    = { "gui": "#C6C6C6", "cterm": "251" }
-let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
-let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
-let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
-let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
-let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
-let s:dark_blue       = { "gui": "#008EC4", "cterm": "4"   }
-let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
-let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
-let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"   }
-let s:light_cyan      = { "gui": "#4FB8CC", "cterm": "14"  }
-let s:dark_green      = { "gui": "#10A778", "cterm": "2"   }
-let s:light_green     = { "gui": "#5FD7A7", "cterm": "10"  }
-let s:dark_purple     = { "gui": "#523C79", "cterm": "5"   }
-let s:light_purple    = { "gui": "#6855DE", "cterm": "13"  }
-let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
-let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
+let s:black          = { "gui": "#212121", "cterm": "0"   }
+let s:medium_gray    = { "gui": "#767676", "cterm": "243" }
+let s:white          = { "gui": "#F1F1F1", "cterm": "15"  }
+let s:actual_white   = { "gui": "#FFFFFF", "cterm": "231" }
+let s:light_black    = { "gui": "#424242", "cterm": "8"   }
+let s:lighter_black  = { "gui": "#545454", "cterm": "240" }
+let s:subtle_black   = { "gui": "#303030", "cterm": "236" }
+let s:light_gray     = { "gui": "#B2B2B2", "cterm": "249" }
+let s:lighter_gray   = { "gui": "#C6C6C6", "cterm": "251" }
+let s:pink           = { "gui": "#fb007a", "cterm": "9"   }
+let s:another_pink   = { "gui": "#fb007a", "cterm": "225" }
+let s:dark_red       = { "gui": "#C30771", "cterm": "1"   }
+let s:light_red      = { "gui": "#E32791", "cterm": "1"   }
+let s:lighter_red    = { "gui": "#E32791", "cterm": "204" }
+let s:orange         = { "gui": "#D75F5F", "cterm": "167" }
+let s:another_orange = { "gui": "#D75F5F", "cterm": "173" }
+let s:darker_blue    = { "gui": "#005F87", "cterm": "18"  }
+let s:dark_blue      = { "gui": "#008EC4", "cterm": "4"   }
+let s:blue           = { "gui": "#20BBFC", "cterm": "12"  }
+let s:light_blue     = { "gui": "#b6d6fd", "cterm": "153" }
+let s:lighter_blue   = { "gui": "#b6d6fd", "cterm": "195" }
+let s:dark_cyan      = { "gui": "#20A5BA", "cterm": "6"   }
+let s:light_cyan     = { "gui": "#4FB8CC", "cterm": "14"  }
+let s:dark_green     = { "gui": "#10A778", "cterm": "2"   }
+let s:light_green    = { "gui": "#5FD7A7", "cterm": "10"  }
+let s:lighter_green  = { "gui": "#5FD7A7", "cterm": "193" }
+let s:dark_purple    = { "gui": "#523C79", "cterm": "5"   }
+let s:light_purple   = { "gui": "#6855DE", "cterm": "13"  }
+let s:yellow         = { "gui": "#F3E430", "cterm": "11"  }
+let s:lighter_yellow = { "gui": "#F3E430", "cterm": "229" }
+let s:dark_yellow    = { "gui": "#A89C14", "cterm": "3"   }
+let s:light_magenta  = { "gui": "", "cterm" : "125"       }
+
 
 if &background == "dark"
   let s:bg              = s:black
@@ -65,7 +75,7 @@ else
   let s:cyan            = s:dark_cyan
   let s:green           = s:dark_green
   let s:red             = s:dark_red
-  let s:visual          = s:light_blue
+  let s:visual          = s:lighter_yellow
 endif
 
 " https://github.com/noahfrederick/vim-hemisu/
@@ -126,16 +136,20 @@ hi! link Delimiter        Special
 hi! link SpecialComment   Special
 hi! link Debug            Special
 
-call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline"})
+call s:h("Underlined",
+    \ {"fg": s:norm, "gui": "underline", "cterm": "underline"})
 call s:h("Ignore",        {"fg": s:bg})
-call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
-call s:h("Todo",          {"fg": s:actual_white, "bg": s:pink, "gui": "bold", "cterm": "bold"})
+call s:h("Error",
+    \ {"fg": s:actual_white, "bg": s:red})
+call s:h("Todo",
+    \ {"fg": s:actual_white, "bg": s:green, "gui": "bold", "cterm": "bold"})
+
 call s:h("SpecialKey",    {"fg": s:light_green})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:dark_blue})
-call s:h("ErrorMsg",      {"fg": s:pink})
-call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
-call s:h("Search",        {"bg": s:bg_subtle})
+call s:h("ErrorMsg",      {"fg": s:light_red})
+call s:h("IncSearch",     {"bg": s:yellow, "fg": s:norm})
+call s:h("Search",        {"bg": s:yellow})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
@@ -147,7 +161,7 @@ call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
 call s:h("Title",         {"fg": s:dark_blue})
 call s:h("Visual",        {"bg": s:visual})
 call s:h("VisualNOS",     {"bg": s:bg_subtle})
-call s:h("WarningMsg",    {"fg": s:red})
+call s:h("WarningMsg",    {"fg": s:lighter_red})
 call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
 call s:h("Folded",        {"fg": s:medium_gray})
 call s:h("FoldColumn",    {"fg": s:bg_subtle})
@@ -163,18 +177,20 @@ if has("gui_running")
   call s:h("SpellRare",   {"gui": "underline", "sp": s:pink})
   call s:h("SpellLocal",  {"gui": "underline", "sp": s:dark_green})
 else
-  call s:h("SpellBad",    {"cterm": "underline", "fg": s:red})
+  call s:h("SpellBad",    {"cterm": "underline", "fg": s:lighter_red})
   call s:h("SpellCap",    {"cterm": "underline", "fg": s:light_green})
   call s:h("SpellRare",   {"cterm": "underline", "fg": s:pink})
   call s:h("SpellLocal",  {"cterm": "underline", "fg": s:dark_green})
 endif
 
-call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg_subtle})
-call s:h("PmenuSel",      {"fg": s:norm, "bg": s:blue})
-call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
-call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
+call s:h("Pmenu",         {"fg": s:norm, "bg": s:lighter_gray})
+call s:h("PmenuSel",      {"fg": s:norm, "bg": s:yellow})
+call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:lighter_gray})
+call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:lighter_gray})
+
 call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
-call s:h("TabLineSel",    {"fg": s:blue, "bg": s:bg_subtle, "gui": "bold", "cterm": "bold"})
+call s:h("TabLineSel",
+    \ {"fg": s:blue, "bg": s:bg_subtle, "gui": "bold", "cterm": "bold"})
 call s:h("TabLineFill",   {"fg": s:norm, "bg": s:bg_very_subtle})
 call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
 call s:h("CursorLine",    {"bg": s:bg_very_subtle})
@@ -198,3 +214,11 @@ hi link GitGutterAdd                LineNr
 hi link GitGutterDelete             LineNr
 hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
+
+" easy motion
+call s:h("EasyMotionShade",         { "fg": s:bg_subtle          } )
+call s:h("EasyMotionTarget",        { "fg": s:red, "bg": s:white } )
+call s:h("EasyMotionMoveHL",        { "fg": s:red, "bg": s:white } )
+call s:h("EasyMotionTarget2First",  { "fg": s:red, "bg": s:white } )
+call s:h("EasyMotionTarget2Second", { "fg": s:red, "bg": s:white } )
+
