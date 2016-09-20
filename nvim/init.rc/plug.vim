@@ -33,6 +33,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 "
+" Dark powered asynchronous completion framework for neovim
+"
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+"
 " Enable repeating supported plugin maps with .
 "
 " https://github.com/tpope/vim-repeat
