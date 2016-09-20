@@ -10,14 +10,15 @@
 " neovim install instructions
 "
 " $> brew tap neovim/neovim
-" $> brew install --HEAD neovim
+" $> brew install neovim
 " $> pip3 install neovim
 "
 source $HOME/.config/nvim/init.rc/plug.vim
 
-source $HOME/.config/nvim/init.rc/plug.rc/sneak.vim
-source $HOME/.config/nvim/init.rc/plug.rc/lightline.vim
 source $HOME/.config/nvim/init.rc/plug.rc/betterwhitespace.vim
+source $HOME/.config/nvim/init.rc/plug.rc/deoplete.vim
+source $HOME/.config/nvim/init.rc/plug.rc/lightline.vim
+source $HOME/.config/nvim/init.rc/plug.rc/sneak.vim
 
 source $HOME/.config/nvim/init.rc/reset.vim
 source $HOME/.config/nvim/init.rc/neovim.vim
