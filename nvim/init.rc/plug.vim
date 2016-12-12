@@ -69,7 +69,7 @@ Plug 'svermeulen/vim-easyclip'
 Plug 'christoomey/vim-system-copy'
 
 "
-" Comment stuff out!
+" Comment stuff out
 "
 " https://github.com/tpope/vim-commentary
 "
@@ -79,6 +79,21 @@ Plug 'tpope/vim-commentary'
 " a Git wrapper so awesome, it should be illegal
 "
 Plug 'tpope/vim-fugitive'
+
+"
+" quoting/parenthesizing made simple
+"
+Plug 'tpope/vim-surround'
+
+"
+" A simple, easy-to-use Vim alignment plugin.
+"
+Plug 'junegunn/vim-easy-align'
+
+"
+" a Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
+"
+Plug 'airblade/vim-gitgutter'
 
 "
 " Vim script for text filtering and alignment
